@@ -1,0 +1,50 @@
+# ── Datentypen ──────────────────────────────────────────
+results = []   # list  – Verlauf speichern
+
+# ── Funktionen ──────────────────────────────────────────
+# TODO: implement funcctions
+
+# ── Hauptprogramm ───────────────────────────────────────
+def start_calculator():
+    print("=== Taschenrechner ===")
+
+    while True:                        # Kontrollstruktur
+        print("\n1: Addieren")
+        print("2: Subtrahieren")
+        print("3: Multiplizieren")
+        print("4: Dividieren")
+        print("5: Verlauf anzeigen")
+        print("6: Beenden")
+
+        choice = input("Wähle: ")      # str
+
+        if choice == "6":              # Kontrollstruktur
+            print("Tschüss!")
+            break
+
+        if choice == "5":
+            show_history()
+            continue
+
+        # Zahlen einlesen
+        a = float(input("Erste Zahl: "))   # float
+        b = float(input("Zweite Zahl: "))  # float
+
+        # Berechnung je nach Auswahl
+        if choice == "1":
+            result = add(a, b)
+        elif choice == "2":
+            result = subtract(a, b)
+        elif choice == "3":
+            result = multiply(a, b)
+        elif choice == "4":
+            result = divide(a, b)
+        else:
+            print("Ungültige Eingabe!")
+            continue
+
+        print(f"Ergebnis: {result}")
+        results.append(f"{a} op {b} = {result}")  # list befüllen
+
+# Programm starten
+start_calculator()
