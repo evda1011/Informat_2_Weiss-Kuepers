@@ -1,13 +1,18 @@
+from abc import ABC, abstractmethod
 
-
-class Person:
-    """ Klasse zur Repräsentation von Personen """
+class Person(ABC):
+    """  Abstrakte Klasse zur Repräsentation von Personen.
+Die Methode reset_default() ist von den Subklassen zu implementieren """
     def __init__(self, name=None, geburtsjahr=None):
         self._name = name
         self._geburtsjahr = geburtsjahr
 
     def __str__(self):
         return f"Person: {self.name}, Geburtsjahr: {self.geburtsjahr}"
+
+    @abstractmethod
+    def reset_default_values(self):
+        pass
 
 
 class Studierender(Person):
@@ -27,6 +32,13 @@ class Studierender(Person):
     def __str__(self):
         return f"{super().__str__()} und gleichzeitig Studierender mit Matrikelnummer {self.matrNr}"
 
+    def reset_default_values(self):
+        """ Zurücksetzen der Attribute auf Standardwerte """
+        self.name = "Standard-Studierender"
+        self.geburtsjahr = None
+        self.matrNr = None
+
+
 
 class Dozent(Person):
     """ Klasse Dozent als Spezialisierung von Person """
@@ -44,6 +56,13 @@ class Dozent(Person):
 
     def __str__(self):
         return f"{super().__str__()} und gleichzeitig Dozent mit Besoldungsgruppe {self.besoldungsgruppe}"
+
+    def reset_default_values(self):
+        """ Zurücksetzen der Attribute auf Standardwerte """
+        self.name = "Standard-Dozent"
+        self.geburtsjahr = 1900
+        self.besoldungsgruppe = None
+
 
 class Angestellter():
     """ Klasse zur Repräsentation von Angestellten """
